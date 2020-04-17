@@ -1,0 +1,78 @@
+.TH shell 1 2020-004-16 "version 1.0" "Simple Shell Manual Page"
+.SH NAME
+.B shell
+- command interpreter (shell)
+.SH SYNOPSIS
+.B shell [
+.I filename
+.B ] [
+.I option
+.B ]
+
+.SH DESCRIPTION
+Is a command interpreter for the system. This version has some features similar
+of the sh version in wich it was based. The whole code was written in C language.
+
+.SS Overview
+The shell is a command that read lines from a file or the stream terminal,
+iterprets them, and try to execute the command. It works basically with the
+combination of some data structures as linked list, structs, and arrays. Also
+it uses the environment variables of the current process to run the shell, and
+the macros, system calls and other functions already existing in some common
+libraries and the current linux version.
+
+.SS Invocation
+It can work with interactive and non-interactive mode, to make it work as
+interactive you first must run the shell from another shell. For a non-
+interactive use you must first echo the command and then execute the shell.
+
+.SS Argument list processing
+Currently it does not run any option for the arguments unless the command
+already has options on it. In future versions probably it could be implemented.
+
+.SS Lexical structure
+The shell read input in terms of lines from a file and breaks it ip into words
+at whitespace and ending the breaking with the <newline>. This caracters
+are called "operators". The current version works with only the whitespace and
+<newline> operators.
+
+.SS Search and execution
+There are three types of commands: shell functions, built-in commands, and
+normal programs, they are searched for in that order. Shell build-ins are
+executed internally to the shell, without spawning new process.
+If the command doesn not match a function or builtin, the command is searched
+for as a normal program in the file system. When a normal program is executed,
+the shell runs the program, passing he arguments and the environment to the
+program.
+
+.SS Path search
+It is the last search the shell execute, when it does not found any match as a
+shell function, build-in script inside current folder. Looks for each entry in
+the PATH, the PATH its separated by colons. Each entry its a directory name.
+
+.SS Command exit status
+It supports the most common exit codes, usually it will return 0, or the command
+exit status assigned, also manage some error messages.
+
+.SS Built-ins
+Supports exit and EOF (Ctrl+D)
+
+.SH SEE ALSO
+.I sh(1)
+,
+.I csh(1)
+,
+.I ksh(1)
+.
+
+.SH BUGS
+No bugs known.
+
+.SH AUTHOR
+This page was written by
+.BR "Fredy Acuña"
+and
+.BR "Andres Ariza"
+
+A description of the project, and the source code can be found at
+\%https://github.com/afarizap/simple_shell
