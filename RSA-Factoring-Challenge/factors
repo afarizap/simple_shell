@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Factorize as many numbers as possible into a product of two smaller numbers
+filename=$1
+while read -r line
+do
+    echo "$line=$line*1"
+done < $filename
